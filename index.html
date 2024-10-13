@@ -41,7 +41,7 @@
     </header>
 
     <main>
-        <section id="about" class="section">
+        <section id="about" class="section scroll-reveal">
             <div class="container">
                 <h2>About EcoHome</h2>
                 <p>We're passionate about creating a sustainable future. Our mission is to provide homeowners with
@@ -55,32 +55,32 @@
             <div class="container">
                 <h2>Key Features</h2>
                 <div class="features-grid">
-                    <div class="feature-card">
+                    <div class="feature-card scroll-reveal">
                         <i class="fas fa-bolt"></i>
                         <h3>Energy Efficiency</h3>
                         <p>Save money and energy with our Energy Star certified appliances.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card scroll-reveal">
                         <i class="fas fa-tint"></i>
                         <h3>Water Conservation</h3>
                         <p>Reduce water consumption with innovative water-saving technologies.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card scroll-reveal">
                         <i class="fas fa-mobile-alt"></i>
                         <h3>Smart Integration</h3>
                         <p>Control and monitor your appliances remotely for optimal efficiency.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card scroll-reveal">
                         <i class="fas fa-recycle"></i>
                         <h3>Sustainable Materials</h3>
                         <p>We prioritize recycled and recyclable materials in our products.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card scroll-reveal">
                         <i class="fas fa-leaf"></i>
                         <h3>Reduced Emissions</h3>
                         <p>Our appliances help minimize greenhouse gas emissions.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card scroll-reveal">
                         <i class="fas fa-hand-holding-water"></i>
                         <h3>Clean Technology</h3>
                         <p>We utilize advanced technologies that are environmentally friendly.</p>
@@ -93,17 +93,17 @@
             <div class="container">
                 <h2>Benefits of Choosing EcoHome</h2>
                 <div class="benefits-grid">
-                    <div class="benefit">
+                    <div class="benefit scroll-reveal">
                         <i class="fas fa-globe-americas"></i>
                         <h3>Environmental Impact</h3>
                         <p>Reduce your carbon footprint and contribute to a healthier planet.</p>
                     </div>
-                    <div class="benefit">
+                    <div class="benefit scroll-reveal">
                         <i class="fas fa-wallet"></i>
                         <h3>Cost Savings</h3>
                         <p>Lower your utility bills and save money in the long run.</p>
                     </div>
-                    <div class="benefit">
+                    <div class="benefit scroll-reveal">
                         <i class="fas fa-home"></i>
                         <h3>Improved Home Value</h3>
                         <p>Sustainable features can increase the value of your home.</p>
@@ -116,7 +116,7 @@
             <div class="container">
                 <h2>Product Gallery</h2>
                 <div class="gallery-container">
-                    <figure class="gallery-item">
+                    <figure class="gallery-item scroll-reveal">
                         <img src="fridge.jpg" alt="Energy-efficient Refrigerator">
                         <figcaption>Energy-efficient Refrigerator</figcaption>
                         <div class="product-info">
@@ -124,7 +124,7 @@
                             <div class="product-price">₹14,999</div>
                         </div>
                     </figure>
-                    <figure class="gallery-item">
+                    <figure class="gallery-item scroll-reveal">
                         <img src="washingmaching.jpg" alt="Water-saving Washing Machine">
                         <figcaption>Water-saving Washing Machine</figcaption>
                         <div class="product-info">
@@ -132,7 +132,7 @@
                             <div class="product-price">₹14,999</div>
                         </div>
                     </figure>
-                    <figure class="gallery-item">
+                    <figure class="gallery-item scroll-reveal">
                         <img src="thermostat.jpg" alt="Smart Thermostat">
                         <figcaption>Smart Thermostat</figcaption>
                         <div class="product-info">
@@ -140,7 +140,7 @@
                             <div class="product-price">₹2,999</div>
                         </div>
                     </figure>
-                    <figure class="gallery-item">
+                    <figure class="gallery-item scroll-reveal">
                         <img src="solarpanel.jpg" alt="Solar Panels">
                         <figcaption>Solar Panels</figcaption>
                         <div class="product-info">
@@ -148,7 +148,7 @@
                             <div class="product-price">From ₹49,999</div>
                         </div>
                     </figure>
-                    <figure class="gallery-item">
+                    <figure class="gallery-item scroll-reveal">
                         <img src="ledlights.jpg" alt="LED Lighting">
                         <figcaption>LED Lighting</figcaption>
                         <div class="product-info">
@@ -156,7 +156,7 @@
                             <div class="product-price">₹499 /pack</div>
                         </div>
                     </figure>
-                    <figure class="gallery-item">
+                    <figure class="gallery-item scroll-reveal">
                         <img src="induction.jpg" alt="Induction Cooktop">
                         <figcaption>Induction Cooktop</figcaption>
                         <div class="product-info">
@@ -204,6 +204,7 @@
     </footer>
 
     <script>
+
         window.addEventListener('load', () => {
             document.getElementById('loading-screen').style.display = 'none';
             document.body.classList.add('loaded');
@@ -225,9 +226,11 @@
             });
         });
 
+
         const element = document.getElementById('body');
 
         let opacity = 0;
+
         const intervalId = setInterval(() => {
             opacity += 0.1;
             element.style.opacity = opacity;
@@ -235,6 +238,32 @@
                 clearInterval(intervalId);
             }
         }, 50);
+
+        function isInViewport(element, offset = 100) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= -offset &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + offset &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScroll() {
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+
+            scrollRevealElements.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('show');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        handleScroll();
+
+
     </script>
 </body>
 
